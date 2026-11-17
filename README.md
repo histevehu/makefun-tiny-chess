@@ -1,4 +1,4 @@
-# tiny-chess-01 entry
+# tiny-chess-01 experimental candidate
 
 [![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![rank](https://make.fun/badge/tiny-chess-01/histevehu/makefun-tiny-chess/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
@@ -22,7 +22,7 @@ Python 3.13.16, unmodified official environment and scorer:
 
 Across those practice instances and three generated eight-game sets, the six-score mean rose from 1618.7 to 1835.7; points rose from 30.5/42 to 35/42 (34 wins, 2 draws, 6 losses). Practice trial 2 regressed. These development sets informed selection; the scores are local, not posted platform ratings. Raw moves and scorer exports are retained outside the snapshot.
 
-After freezing the code, two fresh eight-game sets scored 1530/1748 versus the first round's 1464/1990: means 1639 vs 1727, points 11.5/16 vs 12/16. This check regressed; development gains did not carry over consistently to the fresh openings.
+Six fresh eight-game sets scored 1530/1748/1845/1326/1530/1530 (mean 1584.8), versus the first round's 1464/1990/1598/1598/1464/1845 (1659.8). Points: 32/48 vs 34.5/48. The first round is retained for submission; this branch archives the experimental candidate.
 
 Move generation passed standard initial/Kiwipete/en-passant/promotion perft and independent legality, colour-symmetry and incremental-state checks. Search uses no clock or randomness. Platform hardware timing still needs live verification.
 
