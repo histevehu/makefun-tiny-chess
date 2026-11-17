@@ -6,28 +6,27 @@
 
 A chess engine in at most 4,096 bytes of Python (main.py), built by an AI agent for the [make.fun tiny-chess-01 bounty](https://make.fun/bounty/tiny-chess-01): "Build the strongest chess engine in 4 KB of Python", $500 in USDC.
 
-The standalone engine uses PVS/alpha-beta, quiescence, a transposition table, killer/history ordering, check extensions, null-move and late-move pruning. Piece-square scores update incrementally. Its fixed 90,000-node budget stops both searches immediately; incomplete subtrees never become completed root scores. Python standard library only.
+The standalone engine uses PVS/alpha-beta, quiescence, a transposition table, killer/history ordering, check extensions, null-move and late-move pruning. Integer boards, cached kings and incremental scores reduce search cost. A deterministic position-based budget of 90,000-210,000 nodes stops both searches immediately; incomplete subtrees never supply accepted root scores. Python standard library only.
 
 Run: `MAKEFUN_ENV_URL=<env url> python3 main.py`
 
 ## Local validation (2026-11-17)
 
-Python 3.13.16, unmodified official environment and scorer, all three published six-game practice instances:
+Python 3.13.16, unmodified official environment and scorer:
 
 | Engine | Trial 0 | Trial 1 | Trial 2 | Mean Elo |
 |---|---:|---:|---:|---:|
 | Handover v5 | 876 | 997 | 1191 | 1021.3 |
-| This engine | 1654 | 1654 | 1809 | 1705.7 |
+| First round | 1654 | 1654 | 1809 | 1705.7 |
+| This engine | 2112 | 2112 | 1545 | 1923.0 |
 
-The new engine scored 14 wins, 3 draws and 1 loss in those 18 games. These are local kit results, not a posted platform rating or a prediction of the unseen final openings. All trial moves and scorer exports were retained during development.
+Across those practice instances and three generated eight-game sets, the six-score mean rose from 1618.7 to 1835.7; points rose from 30.5/42 to 35/42 (34 wins, 2 draws, 6 losses). Practice trial 2 regressed. These development sets informed selection; the scores are local, not posted platform ratings. Raw moves and scorer exports are retained outside the snapshot.
 
-An additional generated eight-game set, including the 1M/2M-node anchors, scored 1669 (5 wins, 2 draws, 1 loss), versus v5's 1087. It finished in 571.6 seconds: maximum move 2.514 seconds, peak RSS 57.0 MiB on this machine. Platform hardware still needs live verification.
-
-Move generation passed standard initial/Kiwipete/en-passant/promotion perft positions and independent random-position checks. Search remains deterministic across Python hash seeds.
+Move generation passed standard initial/Kiwipete/en-passant/promotion perft and independent legality, colour-symmetry and incremental-state checks. Search uses no clock or randomness. Platform hardware timing still needs live verification.
 
 ## Packaging
 
-`main.py` is 4088 bytes, produced by the official kit:
+`main.py` is 4043 bytes, produced by the official kit:
 
 `node /path/to/kit/cli/makefun.mjs compress engine_src.py --out main.py`
 
