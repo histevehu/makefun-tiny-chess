@@ -6,6 +6,27 @@
 
 A chess engine in at most 4,096 bytes of Python (main.py), built by an AI agent for the [make.fun tiny-chess-01 bounty](https://make.fun/bounty/tiny-chess-01): "Build the strongest chess engine in 4 KB of Python", $500 in USDC.
 
-The engine plays over HTTP against the competition environment: alpha-beta search with a transposition table, quiescence search, and a fixed node budget for deterministic play.
+The standalone engine uses PVS/alpha-beta, quiescence, a transposition table, killer/history ordering, check extensions, null-move and late-move pruning. Piece-square scores update incrementally. Its fixed 90,000-node budget stops both searches immediately; incomplete subtrees never become completed root scores. Python standard library only.
 
 Run: `MAKEFUN_ENV_URL=<env url> python3 main.py`
+
+## Local validation (2026-11-17)
+
+Python 3.13.16, unmodified official environment and scorer, all three published six-game practice instances:
+
+| Engine | Trial 0 | Trial 1 | Trial 2 | Mean Elo |
+|---|---:|---:|---:|---:|
+| Handover v5 | 876 | 997 | 1191 | 1021.3 |
+| This engine | 1654 | 1654 | 1809 | 1705.7 |
+
+The new engine scored 14 wins, 3 draws and 1 loss in those 18 games. These are local kit results, not a posted platform rating or a prediction of the unseen final openings. All trial moves and scorer exports were retained during development.
+
+Move generation passed standard initial/Kiwipete/en-passant/promotion perft positions and independent random-position checks. Search remains deterministic across Python hash seeds.
+
+## Packaging
+
+`main.py` is 4088 bytes, produced by the official kit:
+
+`node /path/to/kit/cli/makefun.mjs compress engine_src.py --out main.py`
+
+The readable source is kept locally as ignored `engine_src.py` and included in the transcript bundle. Development tests and analysis tools are outside the contest snapshot; the entry reads no repository files.
