@@ -22,6 +22,8 @@ Python 3.13.16, unmodified official environment and scorer:
 
 Across those practice instances and three generated eight-game sets, the six-score mean rose from 1618.7 to 1835.7; points rose from 30.5/42 to 35/42 (34 wins, 2 draws, 6 losses). Practice trial 2 regressed. These development sets informed selection; the scores are local, not posted platform ratings. Raw moves and scorer exports are retained outside the snapshot.
 
+After freezing the code, two fresh eight-game sets scored 1530/1748 versus the first round's 1464/1990: means 1639 vs 1727, points 11.5/16 vs 12/16. This check regressed; development gains did not carry over consistently to the fresh openings.
+
 Move generation passed standard initial/Kiwipete/en-passant/promotion perft and independent legality, colour-symmetry and incremental-state checks. Search uses no clock or randomness. Platform hardware timing still needs live verification.
 
 ## Packaging
