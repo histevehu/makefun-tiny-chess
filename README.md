@@ -21,7 +21,7 @@ Python 3.13.16, unmodified official environment and scorer, all three published 
 
 The new engine scored 14 wins, 3 draws and 1 loss in those 18 games. These are local kit results, not a posted platform rating or a prediction of the unseen final openings. All trial moves and scorer exports were retained during development.
 
-An additional generated eight-game set, including the 1M/2M-node anchors, scored 1669 (5 wins, 2 draws, 1 loss), versus v5's 1087. It finished in 571.6 seconds: maximum move 2.514 seconds, peak RSS 57.0 MiB on this machine. Platform hardware still needs live verification.
+Six fresh eight-game sets drawn after the code freeze scored 1464/1990/1598/1598/1464/1845, mean 1659.8: 31 wins, 7 draws, 10 losses (34.5/48 points). Maximum trial 676.1 seconds, move 3.885 seconds, peak RSS 56.8 MiB locally; platform hardware needs live verification. A round-two candidate averaged 1923 on practice but 1584.8 on these fresh sets (32/48 points), so this validated version is retained for submission.
 
 Move generation passed standard initial/Kiwipete/en-passant/promotion perft positions and independent random-position checks. Search remains deterministic across Python hash seeds.
 
